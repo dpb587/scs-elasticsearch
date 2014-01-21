@@ -1,0 +1,5 @@
+path.data: "/scs/mnt/data"
+path.conf: "/scs/etc/elasticsearch"
+path.logs: "/scs/var/log/elasticsearch"
+cluster.name: "<%= scope['cluster'] %>"
+<%= YAML.dump(scope['options']) %>
