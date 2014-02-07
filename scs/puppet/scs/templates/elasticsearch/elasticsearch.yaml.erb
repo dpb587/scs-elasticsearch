@@ -1,5 +1,6 @@
-path.data: "/scs/mnt/data"
+path.data: "/scs-mnt/data"
 path.conf: "/scs/etc/elasticsearch"
 path.logs: "/scs/var/log/elasticsearch"
+discovery.zen.ping.unicast.hosts: []
 cluster.name: "<%= scope['cluster'] %>"
 <%= YAML.dump(scope['options']) %>
