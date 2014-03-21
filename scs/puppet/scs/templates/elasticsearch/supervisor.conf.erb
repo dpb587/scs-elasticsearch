@@ -1,9 +1,0 @@
-[program:elasticsearch]
-command = /scs/usr/elasticsearch/bin/elasticsearch -Des.config=/scs/etc/elasticsearch/elasticsearch.yaml -Des.pidfile=/scs/var/run/elasticsearch/elasticsearch.pid <% scope['es_run_args'].each do | v | %> <%= v %><% end %>
-<% if scope['es_env_opts'] then %><% prefix = '' -%>
-environment = <% scope['es_env_opts'].each do | k, v | %><%= prefix %><%= k %>="<%= v %>"<% prefix = ',' %><% end -%>
-<% end %>
-stdout_logfile = /scs/var/log/supervisord/%(program_name)s-stdout.log
-stderr_logfile = /scs/var/log/supervisord/%(program_name)s-stderr.log
-stopwaitsecs = 30
-autorestart = true

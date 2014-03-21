@@ -1,0 +1,8 @@
+#!/bin/bash
+
+set -e
+
+chown -R scs:scs /mnt/data
+
+PARSED=`echo "$SCS_REQUIRE_TRANSPORT_TCP" | sed 's/;/","/' | sed -r 's/(.+)/"\1"/'`
+sed -ri "s/^(discovery.zen.ping.unicast.hosts:) (.*)\$/\1 [$PARSED]/" /etc/elasticsearch/elasticsearch.yaml

@@ -1,0 +1,34 @@
+image:
+  source:
+      type: git
+      uri: file:///vagrant/scs-elasticsearch
+  engine:
+    method: docker
+    options:
+      build_patch:
+        pre:
+          - "( nc -zw 8 172.17.42.1 3142 && echo 'Acquire::http { Proxy \"http://172.17.42.1:3142\"; };' > /etc/apt/apt.conf.d/01proxy ) || true"
+  config:
+    main:
+      cluster: 'test-default'
+      es_env_opts:
+        ES_MAX_MEM: 128M 
+        ES_MIN_MEM: 128M
+container:
+  name:
+    environment: dev
+    service: scs-elasticsearch
+    role: test
+  provide:
+    api_http:
+      method: disco
+    transport_tcp:
+      method: disco
+  require:
+    transport_tcp:
+      method: disco
+  volume:
+    data:
+      method: local
+  logs:
+    method: lumberjack

@@ -1,0 +1,26 @@
+engine:
+  docker:
+    from: "scs-base"
+config:
+  method: puppet
+provide:
+  api_http:
+    port: 9200
+  transport_tcp:
+    port: 9300
+require:
+  transport_tcp:
+    description: "Unicast Discovery Nodes"
+    liveupdate:
+      command: "/bin/true"
+volume:
+  data: {}
+logs:
+  - path: /var/log/elasticsearch/error.log
+    type: elasticsearch
+  - path: /var/log/supervisor/elasticsearch-stdout.log
+    type: supervisor
+    name: elasticsearch-stdout
+  - path: /var/log/supervisor/elasticsearch-stderr.log
+    type: supervisor
+    name: elasticsearch-stderr

@@ -1,5 +1,2 @@
-/etc
-/mnt
-/var
 /compiled.json
-/runtime.yaml
+/docker.cid
